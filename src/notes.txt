@@ -1,0 +1,3 @@
+<Button  gutterBottom  className='btn' onClick={()=>setCount(count + 1)} size="small" variant='outlined' color='success'>Add to cart</Button>
+        {count >= 1 ? <Button  gutterBottom onClick={()=>setCount(count - 1)} size="small" variant='outlined' color='error'>Remove</Button> : null}
+        <Badge color="primary" badgeContent={count}>{count}</Badge>
