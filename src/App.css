@@ -253,3 +253,23 @@ footer{
   color: #ffffff;
   background-color: black;
 }
+
+/* .menu1{
+  text-decoration: none !important;
+  color: black !important;
+} */
+
+.dividers{
+  color: red !important;
+  font-weight: 500 !important;
+  margin-bottom: 5px;
+}
+
+.menu-items-nav{
+  display: flex;
+ 
+}
+
+.m1:hover{
+  transform: scale(1.1);
+}

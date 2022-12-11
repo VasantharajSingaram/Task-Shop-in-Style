@@ -43,8 +43,9 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import MailIcon from '@mui/icons-material/Mail';
 import { createContext, useContext } from "react";
-
-
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -67,7 +68,7 @@ const [count, setCount] =  useState(0);
 
 
 const pages = ['New Arrivals', 'Look Book'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'settings', 'Logout'];
 
 
 
@@ -77,8 +78,17 @@ function ResponsiveAppBar() {
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const [show, setShow] = useState(true);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -235,8 +245,66 @@ function ResponsiveAppBar() {
                 {page}
               </Button>
             ))}
-          
+          <Button  style={{fontFamily:"Assistant", fontWeight: 500, fontSize: 16, wordSpacing:"-0.1rem", color:"black"}} className="menu1" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        Men 
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <div className='menu-items-nav'>
+          <div>
+        <MenuItem className='dividers' onClick={handleClose}>Top Wears</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>T-Shirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Casual Shirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Formal Shirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sweatshirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sweaters</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Jackets</MenuItem>
+        
+        <Divider />
+        <MenuItem className='dividers' onClick={handleClose}>Indian & Festive Wears</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Dhotis</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Kurtas & Kurta Sets</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sherwanis</MenuItem>
+        </div>
+<div>
+        <MenuItem className='dividers' onClick={handleClose}>Bottom Wears</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Jeans</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Casual Trousers</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Formal Trousers</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Shorts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Track Pants & Joggers</MenuItem>
+        <Divider />        
+        <MenuItem className='dividers' onClick={handleClose}>Innerwear & Sleepwear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Briefs & Trunks</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Boxers</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Vests</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sleepwear & Loungewear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Thermals</MenuItem>
+
+
+</div>
+<div>
+        <MenuItem className='dividers' onClick={handleClose}>Footwear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Casual Shoes</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sports Shoes</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Formal Shoes</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sneakers</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sandals & Floaters</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Flip Flops</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Socks</MenuItem>
+   </div>
+       
+        </div>
+      </Menu>
+     
           </Box>
+       
           
 
        
