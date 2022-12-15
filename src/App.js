@@ -570,9 +570,8 @@ function Datalists({count, setCount}){
     <div className='for-cards'>
     {data.map((cdt)=>(
      <CardsInfo cards={cdt} count={count} setCount={setCount}/>
-      
     ))}
-    
+
     </div>
     );
   
@@ -672,15 +671,14 @@ function CardsInfo({cards, count, setCount}){
       </CardActions>
      
       </Card>
-      {/* <Counter count={count} setCount={setCount}/> */}
       
     </div>
    
   )
 }
 
-// function Counter({count, setCount}){
-//   // const [count, setCount] =  useState(0);
+// function Counter(){
+//   const [count, setCount] =  useState(0);
 //   return(
 //     <div>
   
