@@ -56,10 +56,10 @@ const [count, setCount] =  useState(0);
   return (
     <div>
   
- <ResponsiveAppBar />
+ <ResponsiveAppBar count={count}/>
  <Jumbo />
- <Datalists />
-
+ <Datalists count={count} setCount={setCount}/>
+ 
 
 
     </div>
@@ -73,7 +73,7 @@ const settings = ['Profile', 'Account', 'settings', 'Logout'];
 
 
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({count}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -146,6 +146,8 @@ function ResponsiveAppBar() {
       },
     },
   }));
+
+
 
   
 //#eceff1
@@ -302,6 +304,71 @@ function ResponsiveAppBar() {
        
         </div>
       </Menu>
+
+
+
+      <Button  style={{fontFamily:"Assistant", fontWeight: 500, fontSize: 16, wordSpacing:"-0.1rem", color:"black"}} className="menu1" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        Women 
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <div className='menu-items-nav'>
+          <div>
+        <MenuItem className='dividers' onClick={handleClose}>Indian & Fusion Wear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Kurtas & Suits</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Kurtis, Tunics & Tops</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sarees</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Ethnic Wear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Leggings, Salwars & Churidars</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Skirts & Palazzos</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Dress Materials</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Lehenga Cholis</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Dupattas & Shawls</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Jackets</MenuItem>
+     
+        
+        
+        <Divider />
+        <MenuItem className='dividers' onClick={handleClose}>Jewellery</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Fashion Jewellery</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Fine Jewellery</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Earrings</MenuItem>
+        </div>
+<div>
+        <MenuItem className='dividers' onClick={handleClose}>Western Wear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Dresses</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Tops</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Tshirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Jeans</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Trousers & Capris</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Shorts & Skirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Co-ords</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Playsuits</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Jumpsuits</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Shrugs</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sweaters & Sweatshirts</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Jackets & Coats</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Blazers & Waistcoats</MenuItem>
+        
+</div>
+<div>
+        <MenuItem className='dividers' onClick={handleClose}>Footwear</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Flats</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Casual Shoes</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Heels</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Boots</MenuItem>
+        <MenuItem className='m1' onClick={handleClose}>Sports Shoes & Floaters</MenuItem>
+       
+   </div>
+       
+        </div>
+      </Menu>
      
           </Box>
        
@@ -312,7 +379,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0, display:"flex" }}>
           <FavoriteBorderIcon sx={{ mt: '9px', mr: '20px' }} style={{color:"error"}}/>
           <ShoppingCartIcon sx={{ mt: '9px' }} style={{color:"error"}}/>
-          <Badge style={{top: 10}} color="primary" badgeContent={0} />
+          <Badge style={{top: 10}} color="primary" badgeContent={count} />
           <Search sx={{mr:"-50px"}}>
             <SearchIconWrapper>
               <SearchIcon />
@@ -424,7 +491,7 @@ function Jumbo(){
 }
 
 
-function Datalists(){
+function Datalists({count, setCount}){
   const data = [{
     title: "HIGHLANDER",
     description: "Slim Fit Casual Shirt",
@@ -502,20 +569,21 @@ function Datalists(){
   return(
     <div className='for-cards'>
     {data.map((cdt)=>(
-     <CardsInfo cards={cdt}/>
+     <CardsInfo cards={cdt} count={count} setCount={setCount}/>
+      
     ))}
+    
     </div>
     );
   
 }
 
 
-function CardsInfo({cards}){
+function CardsInfo({cards, count, setCount}){
   const [clicked, setClicked] = useState(false);
 
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
-  // const [count, setCount] = useContext(countCtx);
 
 
 
@@ -545,7 +613,8 @@ function CardsInfo({cards}){
       {cards.rating >=1 ? <Rating  name="size-small" defaultValue={cards.rating} size="small" readOnly/> : null}
       </div>
       <AddShoppingCartIcon  style={{position: "absolute",top: 370,left: "88%",transform: "translateX(-50%)", color: "white", backgroundColor: "black", }}/>
-      <Badge style={{position: "absolute",top: 370,left: "93%",transform: "translateX(-50%)",}} color="error" badgeContent={count} />
+      <Badge style={{position: "absolute",top: 370,left: "93%",transform: "translateX(-50%)",}} color="error" 
+      badgeContent={count} />
      
      
       
@@ -599,16 +668,27 @@ function CardsInfo({cards}){
       <Button  gutterBottom  className='btn' onClick={()=>setCount(count + 1)} size="small" variant='outlined' color='success'>Add to cart</Button>
         {count >= 1 ? <Button  gutterBottom onClick={()=>setCount(count - 1)} size="small" variant='outlined' color='error'>Remove</Button> : null}
         
-      
+  
       </CardActions>
      
       </Card>
+      {/* <Counter count={count} setCount={setCount}/> */}
       
     </div>
    
   )
 }
 
-
+// function Counter({count, setCount}){
+//   // const [count, setCount] =  useState(0);
+//   return(
+//     <div>
+  
+//        <Button  gutterBottom  className='btn' onClick={()=>setCount(count + 1)} size="small" variant='outlined' color='success'>Add to cart</Button>
+//         {count >= 1 ? <Button  gutterBottom onClick={()=>setCount(count - 1)} size="small" variant='outlined' color='error'>Remove</Button> : null}
+      
+//     </div>
+//   )
+// }
 
 export default App;
